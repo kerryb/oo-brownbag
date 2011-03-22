@@ -3,11 +3,11 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <!-- Slide meta data, remove/edit as you see fit -->
-    <title>RSpec</title>
+    <title>OO Brown Bag</title>
     <meta name="author" content="Kerry Buckley" />
     <meta name="email" content="kerry.buckley@gmail.com" />
-    <meta name="date" content="2011-01-04" />
-    <meta name="venue" content="Ipswich Ruby User Group" />
+    <meta name="date" content="2011-03-22" />
+    <meta name="venue" content="Nimbus team brown bag" />
     <!-- Slippy core file and dependencies -->
     <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="jquery.history.js"></script>
@@ -132,6 +132,189 @@
         <li>Lack of attention to refactoring and good naming</li>
         <li>Excessive cleverness</li>
       </ul>
+    </div>
+
+    <div class="slide">
+      <h1>SOLID</h1>
+      <ul>
+        <li>Single responsibility principle</li>
+        <li>Open/closed principle</li>
+        <li>Liskov substitution principle</li>
+        <li>Interface segregation principle</li>
+        <li>Dependency inversion principle</li>
+      </ul>
+    </div>
+
+    <div class="slide">
+      <h1>Single responsibility principle</h1>
+      <blockquote>
+        &ldquo;A class should have one, and only one, reason to change.&rdquo;
+      </blockquote>
+    </div>
+
+    <div class="slide">
+      <h1>Single responsibility principle</h1>
+      <pre class="brush: ruby">
+        class Rectangle
+          attr_accessor :x, :y, :width, :height
+
+          def initialize x, y, width, height
+            @x, @y, @width, @height = x, y, width, height
+          end
+
+          def area
+            width * height
+          end
+
+          def draw
+            GUI.draw_rectangle x, y, width, height
+          end
+        end
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Single responsibility principle</h1>
+      <ul>
+        <li>Two responsibilities:
+          <ul>
+            <li>Rectangle geometry</li>
+            <li>Drawing on screen</li>
+          </ul>
+        </li>
+        <li>What if we also wanted to generate a PNG?</li>
+        <li>Why do we need GUI libraries if we only care about calculating area?</li>
+      </ul>
+    </div>
+
+    <div class="slide">
+      <h1>Single responsibility principle</h1>
+      <pre class="brush: ruby">
+        class Rectangle
+          attr_accessor :x, :y, :width, :height
+
+          def initialize x, y, width, height
+            @x, @y, @width, @height = x, y, width, height
+          end
+
+          def area
+            width * height
+          end
+        end
+
+        class RectangleRenderer
+          def initialize rect
+            @rect = rect
+          end
+
+          def draw
+            GUI.draw_rectangle rect.x, rect.y, rect.width, rect.height
+          end
+        end
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Open/closed principle</h1>
+      <blockquote>
+        &ldquo;Software entities (classes, modules, functions, etc) should be open for extension, but closed for modification.&rdquo;
+      </blockquote>
+    </div>
+
+    <div class="slide">
+      <h1>Liskov substitution principle</h1>
+      <blockquote>
+        &ldquo;If for each object o1 of type S there is an object o2 of type T such that for all programs P defined
+        in terms of T, the behavior of P is unchanged when o1 is substituted for o2 then S is a subtype of T.&rdquo;
+      </blockquote>
+    </div>
+
+    <div class="slide">
+      <div class="vcenter">
+        <h1>Huh?</h1>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Liskov substitution principle</h1>
+      <blockquote>
+        &ldquo;An object should work anywhere that expects an instance of its parent class.&rdquo;
+      </blockquote>
+    </div>
+
+    <div class="slide">
+      <h1>Interface segregation principle</h1>
+      <blockquote>
+        &ldquo;Clients should not be forced to depend upon interfaces that they do not use.&rdquo;
+      </blockquote>
+    </div>
+
+    <div class="slide">
+      <h1>Dependency inversion principle</h1>
+      <blockquote>
+        <ol>
+          <li>High level modules should not depend upon low level modules. Both should depend upon abstractions.</li>
+          <li>Abstractions should not depend upon details. Details should depend upon abstractions.</li>
+        </ol>
+      </blockquote>
+    </div>
+
+    <div class="slide">
+      <h1>DRY</h1>
+      <ul>
+        <li>Don&rsquo;t repeat yourself.</li>
+        <li>Don&rsquo;t repeat yourself.</li>
+      </ul>
+    </div>
+
+    <div class="slide">
+      <h1>Law of Demeter</h1>
+      <blockquote>
+        <ol>
+          <li>Each unit should have only limited knowledge about other units: only units &ldquo;closely&rdquo; related to the current unit.</li>
+          <li>Each unit should only talk to its friends; don&rsquo;t talk to strangers.</li>
+          <li>Only talk to your immediate friends.</li>
+        </ol>
+      </blockquote>
+    </div>
+
+    <div class="slide">
+      <h1>Four elements of simple design</h1>
+      <blockquote>
+        A design is simple to the extent that it:
+        <ol>
+          <li>Passes its tests</li>
+          <li>Minimizes duplication</li>
+          <li>Maximizes clarity</li>
+          <li>Has fewer elements</li>
+        </ol>
+      </blockquote>
+    </div>
+
+    <div class="slide">
+      <h1>Four elements of simple design</h1>
+      <blockquote>
+        A design is simple to the extent that it:
+        <ol>
+          <li><del>Passes its tests</del></li>
+          <li>Minimizes duplication</li>
+          <li>Maximizes clarity</li>
+          <li>Has fewer elements</li>
+        </ol>
+      </blockquote>
+    </div>
+
+    <div class="slide">
+      <h1><del>Four</del> Two elements of simple design</h1>
+      <blockquote>
+        A design is simple to the extent that it:
+        <ol>
+          <li><del>Passes its tests</del></li>
+          <li>Minimizes duplication</li>
+          <li>Maximizes clarity</li>
+          <li><del>Has fewer elements</del></li>
+        </ol>
+      </blockquote>
     </div>
   </body>
 </html>

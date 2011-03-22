@@ -104,6 +104,12 @@ blockquote {
   line-height: 1.8em;
 }
 
+blockquote li {
+  font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-size: 0.5em;
+}
+
 p, ul, ol {
   font-family: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: normal;
@@ -148,6 +154,12 @@ ol {
 li {
   margin-top: 0.5em;
   font-size: 1.2em;
+}
+
+li li {
+  list-style-type: square;
+  font-size: 0.5em;
+  margin-left: -1em;
 }
 
 /** References links */
