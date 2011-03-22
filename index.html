@@ -243,6 +243,38 @@
     </div>
 
     <div class="slide">
+      <h1>Liskov substitution principle</h1>
+      <pre class="brush: ruby">
+        class Rectangle
+          attr_accessor :x, :y, :width, :height
+
+          def initialize x, y, width, height
+            @x, @y, @width, @height = x, y, width, height
+          end
+
+          def area
+            width * height
+          end
+        end
+
+        class Square &lt; Rectangle
+          def initialize x, y, side
+            @x, @y, @width, @height = x, y, side, side
+          end
+        end
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Liskov substitution principle</h1>
+      <p>Not as simple as it seems...</p>
+      <pre class="brush: ruby">
+        sq = Square.new 0, 0, 10
+        sq.height = 20 # oops!
+      </pre>
+    </div>
+
+    <div class="slide">
       <h1>Interface segregation principle</h1>
       <blockquote>
         &ldquo;Clients should not be forced to depend upon interfaces that they do not use.&rdquo;
